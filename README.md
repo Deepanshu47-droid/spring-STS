@@ -1,9 +1,8 @@
-🚀 UC4 - REST API: Greeting with JSON Body (POST Request)
+🚀 UC5 - REST API: Greeting with Path Variable & Query Parameter (PUT Request)
 
-This guide helps you set up and test a Spring Boot REST API that accepts a name in the request body (JSON format) and responds with a personalized greeting.
+This guide helps you set up and test a Spring Boot REST API that accepts a first name as a Path Variable and a last name as a Query Parameter in a PUT request.
 
-
-📌 Steps to Implement UC4
+📌 Steps to Implement UC5
 
 ✅ Step 1: Create a Spring Boot Project
 
@@ -11,15 +10,19 @@ This guide helps you set up and test a Spring Boot REST API that accepts a name 
 
 🔹 Add the Spring Web dependency if not already added.
 
+
 ✅ Step 2: Modify the Controller
 
-🔹 Update the REST controller to handle POST requests.
+🔹 Update the REST controller to handle PUT requests.
 
-🔹 Create a UserDTO class to receive firstName and lastName from the request body.
-
-🔹 Modify the endpoint to accept a JSON body and return a personalized greeting.
+🔹 Modify the endpoint to accept:
 
 
+First Name as a Path Variable ({firstName})
+
+Last Name as a Query Parameter (?lastName=Taylor)
+
+🔹 Return a personalized greeting message.
 
 ✅ Step 3: Build and Run the Application
 
@@ -27,11 +30,10 @@ This guide helps you set up and test a Spring Boot REST API that accepts a name 
 
 🔹 Ensure the server starts successfully on port 8080.
 
-
-
 🛠 Step 4: Testing the API
 
-Since this is a POST request, you cannot test it in a browser. Instead, you need to use Postman or cURL.
+Since this is a PUT request, you cannot test it in a browser. Instead, you need to use Postman or cURL.
+
 
 
 1️⃣ Test Using Postman 📬
@@ -42,20 +44,11 @@ Open Postman.
 
 Create a new request.
 
-Select POST from the dropdown.
+Select PUT from the dropdown.
 
 Enter the API URL:
 
-http://localhost:8080/hello/post
-
-Go to the "Body" tab → Select raw → Choose JSON format.
-
-Enter this JSON data:
-
-{
-  "firstName": "Deepanshu",
-  "lastName": "Malviya"
-}
+http://localhost:8080/hello/put/Mark?lastName=Taylor
 
 Click "Send".
 
@@ -63,7 +56,8 @@ Check the Response Body:
 
 Expected response:
 
-Hello Deepanshu Malviya from BridgeLabz!
+
+Hello Mark Taylor from BridgeLabz!
 
 Status Code: 200 OK
 
@@ -73,17 +67,17 @@ If you don’t have Postman, you can use cURL to test the API from your terminal
 
 🔹 Run the following command:
 
-curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Deepanshu", "lastName": "Malviya"}' "http://localhost:8080/hello/post" -w "\n"
+curl -X PUT "http://localhost:8080/hello/put/Mark?lastName=Taylor" -w "\n"
 
 🔹 Expected Output:
 
-Hello Deepanshu Malviya from BridgeLabz!
+Hello Mark Taylor from BridgeLabz!
 
 ✅ Step 5: Verify the Output
 
 If everything is correct, your API should return:
 
-Hello Deepanshu Malviya from BridgeLabz!
+Hello Mark Taylor from BridgeLabz!
 
 If you get an error:
 
@@ -93,5 +87,4 @@ If you get an error:
 
 🔹 Look at the console logs for errors.
 
-🔹 Ensure that the request body is in valid JSON format.
-
+🔹 Ensure that you're using a PUT request, not GET or POST.
